@@ -11,13 +11,13 @@ def downloadForms(formName, years):
         lo = int(years)
         hi = int(years)
     if len(str(lo)) != 4 and len(str(hi)) !=4:
-        raise TypeError('Wrong year format')
+        raise TypeError("Wrong year format")
 
     allForms = processForms(formName)
     formNumber = allForms[0].form_number
 
-    if not os.path.exists(f'downloads/{formNumber}'):
-        os.makedirs(f'downloads/{formNumber}')
+    if not os.path.exists(f"downloads/{formNumber}"):
+        os.makedirs(f"downloads/{formNumber}")
 
     for year in range(lo, hi+1):
         url = [form.form_url for form in allForms if form.form_year == year][0]
@@ -25,9 +25,9 @@ def downloadForms(formName, years):
         try:
             response = urlopen(url)
         except HTTPError as e:
-            print('Error fetching resource from external server', e)
+            print("Error fetching resource from external server", e)
             
-        with open(f'downloads/{formNumber}/{formNumber} - {year}.pdf', 'wb') as f:
+        with open(f"downloads/{formNumber}/{formNumber} - {year}.pdf", "wb") as f:
             f.write(response.read())
 
     print("Files written in './downloads'")

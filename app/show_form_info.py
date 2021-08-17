@@ -15,7 +15,7 @@ def getFormInfo(forms):
 
 def showFormInfo(formNames):
     formInfos = []
-    formNames = formNames.split(',')
+    formNames = formNames.split(",")
     for name in formNames:
         name = name.strip()
         allForms = processForms(name)
